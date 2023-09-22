@@ -1,4 +1,4 @@
-
+/* */
 CREATE DATABASE shop;
 
 CONNECT shop

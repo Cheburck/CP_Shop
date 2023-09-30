@@ -134,12 +134,13 @@ INSERT INTO category (category_name) VALUES
     ('Плиточный шоколад'),
     ('Конфеты');
 
+-- Если не хватает названий компаний - добавить
 INSERT INTO supplier (supplier_name) VALUES
     ('Коломенское'),
     ('Яшкино'),
     ('Choco Pie Company');
 
--- Добавить еще 8 товаров
+-- Добавить еще 14 товаров
 INSERT INTO product (product_name, amount, store_id, category_id, supplier_id) VALUES
     ('Вафли шоколадные', 14, 1, 1, 2);
 
@@ -156,13 +157,13 @@ INSERT INTO buy (client_id) VALUES
     (4),
     (3);
 
--- Каждый заказ включает только один тип товара => добавить 4 товара, которые заказаны
+-- Каждый заказ включает  один и более видов товара => добавить товары, которые были заказаны (штук 5)
 INSERT INTO buy_product (buy_id, product_id, buy_product_rate, amount) VALUES
     (1, 1, DEFAULT, 3);
 
 /*
-    Добавить для заказанных товаров (4) шаг, на котором они находятся 
-    Если шаг, на котором находится товар, еще не завершен то в step_date_end ставить NULL
+    Добавить для заказов () шаг, на котором они находятся 
+    Если шаг, на котором находится заказ, еще не завершен то в step_date_end ставить NULL
     Время доставки - шага 3 - не должно сильно отличаться от кол-ва дней в таблице city
 */
 INSERT INTO buy_step (buy_id, step_id, step_date_beg, step_date_end) VALUES

@@ -68,7 +68,6 @@ CREATE TABLE product
 CREATE TABLE buy
 (
     buy_id SERIAL PRIMARY KEY,
-    buy_rate DECIMAL(2, 1) DEFAULT NULL,
     client_id INT NOT NULL,
     FOREIGN KEY (client_id)
         REFERENCES client (client_id)
@@ -80,6 +79,7 @@ CREATE TABLE buy_product
     buy_product_id SERIAL PRIMARY KEY,
     buy_id INT NOT NULL,
     product_id INT NOT NULL,
+    buy_product_rate DECIMAL(2, 1) DEFAULT NULL,
     amount INT NOT NULL,
     FOREIGN KEY (buy_id)
         REFERENCES buy (buy_id)
@@ -149,13 +149,16 @@ INSERT INTO step (step_name) VALUES
     ('Доставка'),
     ('Возврат');
 
--- Добавить еще 4 заказа
-INSERT INTO buy (buy_rate, client_id) VALUES
-    (NULL, 1);
+INSERT INTO buy (client_id) VALUES
+    (1),
+    (2),
+    (3),
+    (4),
+    (3);
 
 -- Каждый заказ включает только один тип товара => добавить 4 товара, которые заказаны
-INSERT INTO buy_product (buy_id, product_id, amount) VALUES
-    (1, 1, 3);
+INSERT INTO buy_product (buy_id, product_id, buy_product_rate, amount) VALUES
+    (1, 1, DEFAULT, 3);
 
 /*
     Добавить для заказанных товаров (4) шаг, на котором они находятся 

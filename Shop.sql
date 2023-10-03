@@ -9,14 +9,14 @@ CREATE DATABASE shop;
 CREATE TABLE city 
 (
     city_id SERIAL PRIMARY KEY,
-    city_name VARCHAR(30),
+    city_name VARCHAR(100),
     city_days_delivery INT NOT NULL
 );
 
 CREATE TABLE client
 (
     client_id SERIAL PRIMARY KEY,
-    client_name VARCHAR(30),
+    client_name VARCHAR(100),
     client_birthday DATE,
     city_id INT NOT NULL,
     FOREIGN KEY (city_id)
@@ -37,13 +37,13 @@ CREATE TABLE store
 CREATE TABLE supplier
 (
     supplier_id SERIAL PRIMARY KEY,
-    supplier_name VARCHAR(30)
+    supplier_name VARCHAR(100)
 );
 
 CREATE TABLE category
 (
     category_id SERIAL PRIMARY KEY,
-    category_name VARCHAR(30)
+    category_name VARCHAR(100)
 );
 
 CREATE TABLE product
@@ -180,7 +180,7 @@ INSERT INTO buy_product (buy_id, product_id, buy_product_rate, amount) VALUES
     (3, 7, DEFAULT, 3);
 
 /*
-    Добавить для заказов () шаг, на котором они находятся 
+    
     Если шаг, на котором находится заказ, еще не завершен то в step_date_end ставить NULL
     Время доставки - шага 3 - не должно сильно отличаться от кол-ва дней в таблице city
 */

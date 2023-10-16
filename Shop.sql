@@ -133,14 +133,18 @@ INSERT INTO category (category_name) VALUES
     ('Вафли'),
     ('Мармелад'),
     ('Плиточный шоколад'),
-    ('Конфеты');
+    ('Конфеты'),
+    ('Лакрица'),
+    ('Печенье');
 
 INSERT INTO supplier (supplier_name) VALUES
     ('Черноголовка'),
     ('Яшкино'),
     ('Babyfox'),
     ('Холдинг «Объединенные кондитеры»'),
-    ('MARS Wrigley');
+    ('MARS Wrigley'),
+    ('Мармеладыч'),
+    ('TONDI');
 
 INSERT INTO product (product_name, amount, price, store_id, category_id, supplier_id) VALUES
     ('Конфеты со вкусом Баббл гам', 40, 49.99, 1, 4, 1),
@@ -163,7 +167,13 @@ INSERT INTO product (product_name, amount, price, store_id, category_id, supplie
     ('Конфеты вафельные Bueno', 32, 80, 1, 1, 3),
     ('Батончик вафельный Babyfox Roxy', 25, 10, 1, 1, 3),
     ('Ирис Сливочный', 21, 197, 1, 4, 2),
-    ('Dove молочный шоколад с изюмом', 20, 92, 1, 3, 5);
+    ('Dove молочный шоколад с изюмом', 20, 92, 1, 3, 5),
+    ('Мармелад кислый ассорти', 120, 800, 1, 2, 6),
+    ('Лакрица ассорти', 210, 1000, 1, 5, 6),
+    ('Тропический червяк Кузя', 7, 3560, 1, 2, 6),
+    ('Печенье-сэндвич с шоколадно-сливочным вкусом', 187, 60, 1, 6, 7),
+    ('Печенье-сэндвич с клубнично-сливочным вкусом', 212, 65, 1, 6, 7),
+    ('Эклеры сливочные', 103, 120, 1, 6, 7);
 
 INSERT INTO step (step_name) VALUES
     ('Оплата'),
@@ -187,6 +197,7 @@ INSERT INTO buy (client_id) VALUES
     (4),
     (5),
     (4);
+
 
 INSERT INTO buy_product (buy_id, product_id, buy_product_rate, amount) VALUES
     (1, 1, DEFAULT, 7),

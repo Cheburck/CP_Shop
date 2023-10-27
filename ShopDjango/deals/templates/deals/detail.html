@@ -1,0 +1,44 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+    Ваши оформленные заказы
+{% endblock %}
+{% block content %}
+    <h1>Ваши оформленные заказы</h1>
+    <table class="deals">
+        <thead>
+        <tr>
+            <th>ID заказа</th>
+            <th>Количество единиц товаров</th>
+            <th>Состояние заказа</th>
+            <th>Удалить</th>
+            <th>Стоимость</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in deals %}
+            <tr>
+                <td>{{ item.order_id }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.step }}</td>
+                <td><a href="{% url "deals:deals_remove" item.order_id %}">Удалить</a></td>
+                <td class="num">{{ item.total_price }} руб</td>
+                </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url "shop:product_list" %}" class="button light">Вернуться в каталог</a>
+    </p>
+    <strong>Оцените товары:</strong>
+    {% for item in deals %}
+        {% if item.step == 'Возврат'%}
+            <form action="{% url "deals:deals_add" item.order_id %}" method="post" class="form-type">
+                ID ордера:  {{ item.order_id }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Оценка: {{ product_mark_form.quantity }}
+                {% csrf_token %}
+                <input type="submit" value="Подтвердить">
+            </form>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

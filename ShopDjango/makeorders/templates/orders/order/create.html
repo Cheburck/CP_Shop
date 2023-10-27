@@ -1,0 +1,31 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Заказ{% endblock %}
+
+{% block content %}
+    <h1>Заказ</h1>
+    <div class="order-info">
+        <h3>Ваш заказ</h3>
+        <ul>
+            {% for item in cart %}
+                <li>
+                    {{ item.quantity }} x {{ item.prod_name }}
+                    <span>{{ item.total_price }} руб</span>
+                </li>
+            {% endfor %}
+        </ul>
+        <p>Итого: {{ cart.get_total_price }} руб</p>
+    </div>
+    <form action="." method="post" class="order-form">
+        {% for item in form %}
+            {{ item.label }}:
+            {% if item.label == 'Quantity' %}
+                <p>{{ item }}</p>
+            {% else %}
+                <p>{{ item }}</p>
+            {% endif %}
+        {% endfor %}
+        <p><input type="submit" value="Заказать" class="place-order"></p>
+        {% csrf_token %}
+    </form>
+{% endblock %}

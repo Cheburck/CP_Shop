@@ -36,7 +36,7 @@ CREATE TABLE product
     name VARCHAR(500),
     slug VARCHAR(100),
     image VARCHAR(100) DEFAULT NULL, 
-    price DECIMAL NOT NULL,
+    price DECIMAL NOT NULL ,
     amount INT NOT NULL,
     category_id INT NOT NULL,
     supplier_id INT NOT NULL,
@@ -86,8 +86,8 @@ CREATE TABLE buy_step
     id SERIAL PRIMARY KEY,
     buy_id INT NOT NULL,
     step_id INT NOT NULL,
-    step_date_beg DATE,
-    step_date_end DATE DEFAULT NULL,
+    step_date_beg TIMESTAMP,
+    step_date_end TIMESTAMP DEFAULT NULL,
     FOREIGN KEY (buy_id)
         REFERENCES buy (id)
         ON DELETE CASCADE,

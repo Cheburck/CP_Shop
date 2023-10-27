@@ -54,4 +54,6 @@ class Buy_Product(models.Model):
     def get_cost(self):
         return self.price * self.quantity
 
-
+    class Meta:
+        verbose_name = 'Купленный продукт'
+        verbose_name_plural = 'Купленные продукты'

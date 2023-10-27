@@ -19,8 +19,11 @@ from django.conf.urls import include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path
+from deals import views
 
 urlpatterns = [
+    path('admin/sold-report/', views.sold_report, name='sold_report'),
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
     re_path(r'^deals/', include(('deals.urls', 'deals'), namespace='deals')),

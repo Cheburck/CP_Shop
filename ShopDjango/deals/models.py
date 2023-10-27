@@ -22,4 +22,12 @@ class Buy_Step(models.Model):
         verbose_name = 'Заказ'
         verbose_name_plural = 'Заказы'
 
+class Sold(models.Model):
+    purchase_date = models.DateField()
+    product_name = models.CharField(max_length=100)
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.PositiveIntegerField()
 
+    class Meta:
+        verbose_name = 'Проданный товар'
+        verbose_name_plural = 'Проданные товары'

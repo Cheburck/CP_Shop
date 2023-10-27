@@ -4,7 +4,7 @@ from .forms import OrderCreateForm
 from cart.cart import Cart
 from deals.deals import Deals
 from shop.models import Product
-from deals.models import Buy, Buy_Step, Step
+from deals.models import Buy, Buy_Step, Step, Sold
 import datetime
 
 def order_create(request):
@@ -20,19 +20,26 @@ def order_create(request):
                                       city=city_found)
             order = form.save()
             quant_total = 0
+
+            start_date = datetime.datetime.now().replace(microsecond=0)
+
             for item in cart:
                 quant_total += item['quantity']
                 Buy_Product.objects.create(order=order,
                                          product=Product.objects.filter(id__in=item['prod_id'])[0],
                                          price=item['price'],
                                          quantity=item['quantity'])
+                Sold.objects.create(purchase_date=start_date,
+                                    product_name=Product.objects.filter(id__in=item['prod_id'])[0],
+                                    unit_price=item['price'],
+                                    quantity=item['quantity'])
             # очистка корзины
             cart.clear()
 
             deals = Deals(request)
             order = get_object_or_404(Buy, id=order.id)
             step = get_object_or_404(Step, id='1')
-            start_date = datetime.datetime.now().replace(microsecond=0)
+            
             Buy_Step.objects.create(buy=order,
                                     step=step,
                                     step_date_beg=start_date,

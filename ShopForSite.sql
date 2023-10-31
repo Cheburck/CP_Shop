@@ -41,7 +41,7 @@ CREATE TABLE product
     category_id INT NOT NULL,
     supplier_id INT NOT NULL,
     available BOOLEAN DEFAULT true,
-    product_rate DECIMAL(2, 2) DEFAULT 0,
+    product_rate DECIMAL(3, 2) DEFAULT 0,
     FOREIGN KEY (category_id)
         REFERENCES category (id)
         ON DELETE CASCADE,
@@ -66,7 +66,7 @@ CREATE TABLE buy_product
     quantity INT NOT NULL,
     order_id INT NOT NULL,
     product_id INT NOT NULL,
-    product_rate DECIMAL(2, 2) DEFAULT NULL,
+    product_rate DECIMAL(3, 2) DEFAULT NULL,
     FOREIGN KEY (order_id)
         REFERENCES buy (id)
         ON DELETE CASCADE,
@@ -96,6 +96,14 @@ CREATE TABLE buy_step
         ON DELETE CASCADE
 );
 
+CREATE TABLE sold
+(
+    id SERIAL PRIMARY KEY,
+    purchase_date DATE,
+    product_name VARCHAR(100),
+    unit_price DECIMAL(12, 2),
+    quantity INT
+);
 
 INSERT INTO city (name, days_delivery) VALUES
     ('Москва', 14),
